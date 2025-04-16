@@ -40,9 +40,7 @@ struct ContentView: View {
         }
     }
     
-    private func activateBrailleKeyboard() {
-        viewModel.activateBrailleKeyboard()
-    }
+  
     
     var body: some View {
         NavigationStack {
@@ -235,11 +233,6 @@ struct ContentView: View {
                     .padding()
                 }
             }
-            .onTapGesture {  // Hide keyboard when tapping outside
-                .sheet(isPresented: $viewModel.showingFavorites) {
-                    FavoritesView(flashcards: $viewModel.flashcardManager.flashcards)
-                }
-            }
             .alert(LocalizedStringKey("delete_flashcard_title"), isPresented: $viewModel.showingDeleteConfirmation) {
                 Button(LocalizedStringKey("cancel"), role: .cancel) { viewModel.flashcardToDelete = nil }
                     
@@ -253,6 +246,9 @@ struct ContentView: View {
             }
             .navigationTitle(LocalizedStringKey("translate"))
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+            .sheet(isPresented: $viewModel.showingFavorites) {
+                FavoritesView(flashcards: $viewModel.flashcardManager.flashcards)
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
