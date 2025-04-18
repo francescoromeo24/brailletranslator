@@ -18,7 +18,8 @@ struct FavoritesView: View {
     
     // Filter and sort starred flashcards based on the date added (newest first)
     var starredFlashcards: [Flashcard] {
-        flashcards.filter { $0.isStarred }
+        flashcards
+            .filter { $0.isStarred }
             .sorted { $0.dateAdded > $1.dateAdded }
     }
     
@@ -60,9 +61,11 @@ struct FavoritesView: View {
                                     }) {
                                         Image(systemName: "star.fill")
                                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                                            .foregroundColor(.blue)
+                                            .foregroundColor(flashcard.isStarred ? .blue : .blue)
                                             .font(.title)
                                     }
+                                    .accessibilityLabel(flashcard.isStarred ? "Remove from favorites" : "Add to favorites")
+                                    .accessibilityHint("Double tap to toggle favorite status")
                                     .padding()
                                     .accessibilityLabel("Toggle star")
                                     .accessibilityHint("Tap to mark this flashcard as starred or unstarred.")
@@ -95,9 +98,12 @@ struct FavoritesView: View {
     
     // Function to toggle the "starred" status of a flashcard
     func toggleFlashcardStar(for flashcard: Flashcard) {
-        if let index = flashcards.firstIndex(where: { $0.id == flashcard.id }) {
-            flashcards[index].isStarred.toggle()
-        }
+        guard let index = flashcards.firstIndex(where: { $0.id == flashcard.id }) else { return }
+        flashcards[index].isStarred.toggle()
+        
+        // Annuncia lo stato per accessibilità
+        let status = flashcards[index].isStarred ? "Added to favorites" : "Removed from favorites"
+        UIAccessibility.post(notification: .announcement, argument: status)
     }
     
     // Function to trigger haptic feedback when an action is performed

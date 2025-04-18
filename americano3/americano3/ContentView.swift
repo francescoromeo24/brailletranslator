@@ -211,24 +211,24 @@ struct ContentView: View {
                     
                     // Flashcard Grid Display
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                        ForEach(viewModel.flashcardManager.sortedFlashcards) { flashcard in
-                            NavigationLink(destination: FlashcardDetailView(flashcard: flashcard)) {
-                                FlashcardView(flashcard: .constant(flashcard)) { updatedFlashcard in
+                        ForEach(viewModel.flashcardManager.flashcards.sorted(by: { $0.dateAdded > $1.dateAdded })) { flashcard in
+                            let flashcardIndex = viewModel.flashcardManager.flashcards.firstIndex(where: { $0.id == flashcard.id })!
+                            
+                            NavigationLink(destination: FlashcardDetailView(flashcard: viewModel.flashcardManager.flashcards[flashcardIndex])) {
+                                FlashcardView(flashcard: $viewModel.flashcardManager.flashcards[flashcardIndex]) { updatedFlashcard in
                                     viewModel.updateFlashcard(updatedFlashcard)
                                 }
-                            }
-                            .frame(
-                                width: UIDevice.current.userInterfaceIdiom == .pad ? 200 : 146,
-                                height: UIDevice.current.userInterfaceIdiom == .pad ? 220 : 164
-                            )
-                            .onLongPressGesture {
-                                viewModel.flashcardToDelete = flashcard
-                                viewModel.showingDeleteConfirmation = true
+                                .frame(
+                                    width: UIDevice.current.userInterfaceIdiom == .pad ? 200 : 146,
+                                    height: UIDevice.current.userInterfaceIdiom == .pad ? 220 : 164
+                                )
+                                .onLongPressGesture {
+                                    viewModel.flashcardToDelete = flashcard
+                                    viewModel.showingDeleteConfirmation = true
+                                }
                             }
                         }
                     }
-                    
-                    
                     .foregroundStyle(.blue)
                     .padding()
                 }
@@ -244,11 +244,11 @@ struct ContentView: View {
                 Text(LocalizedStringKey("delete_flashcard_message"))
                   
             }
-            .navigationTitle(LocalizedStringKey("translate"))
-            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .sheet(isPresented: $viewModel.showingFavorites) {
                 FavoritesView(flashcards: $viewModel.flashcardManager.flashcards)
             }
+            .navigationTitle(LocalizedStringKey("translate"))
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

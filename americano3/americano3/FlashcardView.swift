@@ -42,12 +42,15 @@ struct FlashcardView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    flashcard.isStarred.toggle()
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        flashcard.isStarred.toggle()
+                    }
                     onToggleStar(flashcard)
                     provideHapticFeedback()
                     announceStarStatus()
                 }) {
                     Image(systemName: flashcard.isStarred ? "star.fill" : "star")
+                        .renderingMode(.template)
                         .foregroundColor(.blue)
                         .font(.title)
                         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
@@ -73,12 +76,14 @@ struct FlashcardView: View {
             FlashcardDetailView(flashcard: flashcard)
         }
     }
-// haptic feedback
+
+    // Haptic feedback
     private func provideHapticFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
     }
-//send to favorites
+
+    // Accessibility announcement for favorites toggle
     private func announceStarStatus() {
         let status = flashcard.isStarred ? "Added to favorites" : "Removed from favorites"
         UIAccessibility.post(notification: .announcement, argument: status)
