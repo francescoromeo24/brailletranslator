@@ -125,3 +125,12 @@
 "word" = "Word";
 "switch_translation_hint" = "Toggle between text and Braille.";
 "switch_translation_label" = "Switch translation";
+
+"welcome_title" = "Welcome to Braille Translator";
+"welcome_description" = "Translate between text and braille seamlessly";
+"translation_title" = "Easy Translation";
+"translation_description" = "Switch between text-to-braille and braille-to-text modes";
+"braille_title" = "Learn Braille";
+"braille_description" = "Explore braille representations of words and characters";
+"next" = "Next";
+"get_started" = "Get Started";

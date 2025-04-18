@@ -124,3 +124,12 @@
 "word" = "Mot";
 "word_flashcard_hint" = "Le mot dans cette carte";
 "word_label" = "Mot: %@";
+
+"welcome_title" = "Bienvenue dans le traducteur Braille";
+"welcome_description" = "Traduisez facilement entre texte et braille";
+"translation_title" = "Traduction facile";
+"translation_description" = "Basculez entre les modes texte-vers-braille et braille-vers-texte";
+"braille_title" = "Apprendre le Braille";
+"braille_description" = "Explorez les représentations braille des mots et caractères";
+"next" = "Suivant";
+"get_started" = "Commencer";

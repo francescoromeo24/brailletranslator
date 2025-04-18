@@ -8,10 +8,16 @@
 import SwiftUI
 
 @main
-struct americano3App: App {
+struct Americano3App: App {
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+    
     var body: some Scene {
         WindowGroup {
-            ContainerView()
+            if hasCompletedOnboarding {
+                ContentView()
+            } else {
+                OnboardingView()
+            }
         }
     }
 }

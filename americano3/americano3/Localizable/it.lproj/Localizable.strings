@@ -138,3 +138,12 @@
 "camera_button_hint" = "Tocca due volte per aprire la fotocamera e riconoscere il testo";
 "tap_to_open_favorites_view" = "Tocca due volte per aprire la vista preferiti";
 "tap_to_open_settings_view" = "Tocca due volte per aprire le impostazioni";
+
+"welcome_title" = "Benvenuto nel Traduttore Braille";
+"welcome_description" = "Traduci facilmente tra testo e braille";
+"translation_title" = "Traduzione semplice";
+"translation_description" = "Passa tra le modalità testo-a-braille e braille-a-testo";
+"braille_title" = "Impara il Braille";
+"braille_description" = "Esplora le rappresentazioni braille di parole e caratteri";
+"next" = "Avanti";
+"get_started" = "Inizia";

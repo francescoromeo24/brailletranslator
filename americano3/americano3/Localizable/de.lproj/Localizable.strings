@@ -127,3 +127,12 @@
 "enter_text_hint" = "Text zum Übersetzen eingeben";
 "switch_translation_hint" = "Zwischen Text und Braille wechseln.";
 "switch_translation_label" = "Übersetzung wechseln";
+
+"welcome_title" = "Willkommen beim Braille-Übersetzer";
+"welcome_description" = "Übersetzen Sie nahtlos zwischen Text und Braille";
+"translation_title" = "Einfache Übersetzung";
+"translation_description" = "Wechseln Sie zwischen Text-zu-Braille und Braille-zu-Text-Modi";
+"braille_title" = "Braille lernen";
+"braille_description" = "Erkunden Sie Braille-Darstellungen von Wörtern und Zeichen";
+"next" = "Weiter";
+"get_started" = "Loslegen";
