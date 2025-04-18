@@ -13,12 +13,15 @@ struct SettingsView: View {
                         Label {
                             Text(LocalizedStringKey("settings_permissions"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                                .accessibilityHint(LocalizedStringKey("settings_permissions_hint"))
                         } icon: {
                             Image(systemName: "lock.fill")
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .foregroundColor(.yellow)
                         }
                     }
+                    .accessibilityLabel(LocalizedStringKey("settings_permissions"))
+                    .accessibilityElement(children: .combine)
                     .simultaneousGesture(TapGesture().onEnded {
                         if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
                             UIApplication.shared.open(settingsUrl)
@@ -32,20 +35,27 @@ struct SettingsView: View {
                         Label {
                             Text(LocalizedStringKey("settings_privacy_policy"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                                .accessibilityLabel(LocalizedStringKey("settings_privacy_policy"))
+                                .accessibilityHint(LocalizedStringKey("settings_privacy_hint"))
                         } icon: {
                             Image(systemName: "doc.fill")
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .foregroundColor(.gray)
                         }
                     }
+                    .accessibilityElement(children: .combine)
                 }
                 
                 Section {
                     HStack {
-                        Text("Version")
+                        Text(NSLocalizedString("settings_version", comment: ""))
                         Spacer()
                         Text("\(appVersion) (\(buildNumber))")
                             .foregroundColor(.gray)
+                            .accessibilityLabel(String(format: "%@ %@ (%@)", 
+                                        NSLocalizedString("settings_version", comment: ""),
+                                        appVersion, 
+                                        buildNumber))
                     }
                 }
             }
@@ -60,7 +70,7 @@ struct SettingsView: View {
                             .foregroundColor(.gray)
                     }
                     .accessibilityLabel(LocalizedStringKey("settings_close"))
-                    
+                    .accessibilityHint(LocalizedStringKey("settings_close_hint"))
                 }
             }
         }

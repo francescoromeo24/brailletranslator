@@ -10,19 +10,22 @@ import AVFoundation // Add this import
 struct FlashcardDetailView: View {
     let flashcard: Flashcard
     let synthesizer = AVSpeechSynthesizer()
-    @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.languageCode ?? "en"
+    @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.language.languageCode?.identifier ?? "en"
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 16) {
                 // Testo originale
-                Text(flashcard.word)
+                Text(flashcard.word.isEmpty ? NSLocalizedString("word", comment: "") : flashcard.word)
+                    .accessibilityLabel(flashcard.word.isEmpty ? 
+                        NSLocalizedString("empty_word", comment: "") : 
+                        String(format: NSLocalizedString("original_word", comment: ""), flashcard.word))
+                    .accessibilityHint(NSLocalizedString("original_word_hint", comment: ""))
                     .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                     .foregroundColor(.gray)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
-                    .accessibilityLabel(flashcard.word) 
                     .padding(.horizontal)
 
                 // Braille translation
@@ -36,6 +39,8 @@ struct FlashcardDetailView: View {
                         let originalWord = index < originalWords.count ? originalWords[index] : "?"
 
                         Text(brailleWord)
+                            .accessibilityLabel(String(format: NSLocalizedString("braille_word", comment: ""), originalWord))
+                            .accessibilityHint(NSLocalizedString("braille_word_hint", comment: ""))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)                      .font(.title2)
                             .foregroundColor(.black)
                             .padding(8)
@@ -58,7 +63,7 @@ struct FlashcardDetailView: View {
         }
         .navigationTitle(LocalizedStringKey("details"))
         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-        .accessibilityHint(LocalizedStringKey("flashcard_details_hint"))
+        .accessibilityHint(NSLocalizedString("flashcard_details_hint", comment: ""))
         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                 .background(Color("Background"))
     }

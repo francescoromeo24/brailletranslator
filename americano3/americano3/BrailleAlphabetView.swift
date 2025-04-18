@@ -200,6 +200,8 @@ struct BrailleAlphabetView: View {
                     Picker("Select Alphabet Type", selection: $selectedType) {
                         ForEach(AlphabetType.allCases, id: \.self) { type in
                             Text(type.localized)
+                                .accessibilityLabel(LocalizedStringKey(type.rawValue))
+                                .accessibilityHint(LocalizedStringKey("double_tap_to_switch_to_braille_alphabet"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .font(.body)
                                 .lineLimit(2)
@@ -210,12 +212,17 @@ struct BrailleAlphabetView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel(LocalizedStringKey("braille_alphabet_tab"))
+                    .accessibilityHint(LocalizedStringKey("double_tap_to_switch_to_braille_alphabet"))
 
                     // Displaying the filtered and sorted Braille alphabet
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 20), count: 4), spacing: 30) {
                         ForEach(filteredAlphabet(), id: \.label) { item in
                             VStack(spacing: 10) {
                                 Text(item.label)
+                                    .accessibilityLabel(LocalizedStringKey("braille_pattern_for \(item.label)"))
+                                    .accessibilityHint(LocalizedStringKey("double_tap_to_hear_character"))
                                     .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                     .font(.title)
                                     .bold()
@@ -223,14 +230,21 @@ struct BrailleAlphabetView: View {
                                     .accessibilityLabel(item.label)
                                 
                                 BraillePatternView(pattern: item.pattern, label: item.label)
+                                    .accessibilityLabel(LocalizedStringKey("braille_pattern_for \(item.label)"))
+                                    .accessibilityHint(LocalizedStringKey("double_tap_to_hear_character"))
                             }
+                            .accessibilityElement(children: .combine)
                         }
                     }
                     .padding()
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel(LocalizedStringKey("braille_alphabet"))
                 }
             }
             .background(Color("Background"))
             .navigationTitle(LocalizedStringKey("braille_alphabet"))
+            .accessibilityLabel(LocalizedStringKey("braille_alphabet"))
+            .accessibilityHint(LocalizedStringKey("braille_alphabet_tab"))
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .foregroundColor(.blue)
         }

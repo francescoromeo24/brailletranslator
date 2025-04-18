@@ -10,13 +10,11 @@ import UIKit
 struct FavoritesView: View {
     @Binding var flashcards: [Flashcard]
     
-    // Define a two-column grid layout
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-    // Filter and sort starred flashcards based on the date added (newest first)
     var starredFlashcards: [Flashcard] {
         flashcards
             .filter { $0.isStarred }
@@ -27,51 +25,42 @@ struct FavoritesView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
-                    // Loop through starred flashcards and create navigation links for each
                     ForEach(starredFlashcards, id: \.id) { flashcard in
                         NavigationLink(destination: FlashcardDetailView(flashcard: flashcard)) {
                             VStack {
                                 VStack(alignment: .leading) {
-                                    // Display word with accessibility support
-                                    Text(flashcard.word.isEmpty ? "Word" : flashcard.word)
-                                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.gray)
-                                        .accessibilityLabel(flashcard.word.isEmpty ? "Word" : flashcard.word)
-                                        .accessibilityHint(LocalizedStringKey("word_flashcard_hint"))
-                                    
-                                    // Display translation with accessibility support
-                                    Text(flashcard.translation.isEmpty ? "Translation" : flashcard.translation)
-                                        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                                        .font(.headline)
-                                        .foregroundColor(.gray)
-                                        .padding(.top, 2)
-                                        .accessibilityLabel(flashcard.word.isEmpty ? "Translation" : flashcard.word)
-                                        .accessibilityHint(LocalizedStringKey("translation_flashcard_hint"))
+                                    Text(flashcard.word.isEmpty ? NSLocalizedString("word", comment: "") : flashcard.word)
+                                        .accessibilityLabel(flashcard.word.isEmpty ? 
+                                            NSLocalizedString("empty_word", comment: "") : 
+                                            String(format: NSLocalizedString("word_label", comment: ""), flashcard.word))
+                                        .accessibilityHint(NSLocalizedString("word_flashcard_hint", comment: ""))
+                                    Text(flashcard.translation.isEmpty ? NSLocalizedString("translation", comment: "") : flashcard.translation)
+                                        .accessibilityLabel(flashcard.translation.isEmpty ? 
+                                            NSLocalizedString("empty_translation", comment: "") : 
+                                            String(format: NSLocalizedString("translation_label", comment: ""), flashcard.translation))
+                                        .accessibilityHint(NSLocalizedString("translation_flashcard_hint", comment: ""))
                                 }
                                 .padding()
                                 
                                 HStack {
                                     Spacer()
-                                    // Star button to toggle favorite status
                                     Button(action: {
                                         toggleFlashcardStar(for: flashcard)
-                                        triggerHapticFeedback() // Trigger haptic feedback on action
+                                        triggerHapticFeedback()
                                     }) {
                                         Image(systemName: "star.fill")
                                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                                            .foregroundColor(flashcard.isStarred ? .blue : .blue)
+                                            .foregroundColor(flashcard.isStarred ? .yellow : .blue)
                                             .font(.title)
+                                            .accessibilityLabel(flashcard.isStarred ?
+                                                LocalizedStringKey("unstar_flashcard") :
+                                                LocalizedStringKey("star_flashcard"))
+                                            .accessibilityHint(LocalizedStringKey("star_button_hint"))
                                     }
-                                    .accessibilityLabel(flashcard.isStarred ? "Remove from favorites" : "Add to favorites")
-                                    .accessibilityHint("Double tap to toggle favorite status")
-                                    .padding()
-                                    .accessibilityLabel("Toggle star")
-                                    .accessibilityHint("Tap to mark this flashcard as starred or unstarred.")
-                                    .accessibilityAction(.escape) { toggleFlashcardStar(for: flashcard) }
+                                    .accessibilityAction(.escape) {
+                                        toggleFlashcardStar(for: flashcard)
+                                    }
                                 }
-                                
                             }
                             .frame(
                                 width: UIDevice.current.userInterfaceIdiom == .pad ? 200 : 146,
@@ -83,8 +72,9 @@ struct FavoritesView: View {
                                     .stroke(Color.blue, lineWidth: 1)
                                     .shadow(radius: 2)
                             )
-                            .accessibilityElement(children: .contain)
-                            .accessibilityLabel("Flashcard")
+                            .accessibilityElement(children: .combine)
+                            .accessibilityLabel(String(format: NSLocalizedString("flashcard_label", comment: ""), flashcard.word, flashcard.translation))
+                            .accessibilityHint(LocalizedStringKey("flashcard_details_hint"))
                         }
                     }
                 }
@@ -92,21 +82,20 @@ struct FavoritesView: View {
             }
             .navigationTitle(LocalizedStringKey("favorites"))
             .dynamicTypeSize(..<DynamicTypeSize.large)
-            .background(Color("Background")) // Use app-defined background color
+            .background(Color("Background"))
         }
     }
     
-    // Function to toggle the "starred" status of a flashcard
     func toggleFlashcardStar(for flashcard: Flashcard) {
         guard let index = flashcards.firstIndex(where: { $0.id == flashcard.id }) else { return }
         flashcards[index].isStarred.toggle()
         
-        // Annuncia lo stato per accessibilità
-        let status = flashcards[index].isStarred ? "Added to favorites" : "Removed from favorites"
+        let status = flashcards[index].isStarred ? 
+            NSLocalizedString("added_to_favorites", comment: "") : 
+            NSLocalizedString("removed_from_favorites", comment: "")
         UIAccessibility.post(notification: .announcement, argument: status)
     }
     
-    // Function to trigger haptic feedback when an action is performed
     func triggerHapticFeedback() {
         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
         impactFeedback.prepare()
@@ -114,10 +103,10 @@ struct FavoritesView: View {
     }
 }
 
-// Preview provider to display sample flashcards
 #Preview {
     FavoritesView(flashcards: .constant([
-        Flashcard(word: "", translation: "", isStarred: true, dateAdded: Date()),
-        Flashcard(word: "", translation: "", isStarred: true, dateAdded: Date())
+        Flashcard(word: "Hello", translation: "Ciao", isStarred: true, dateAdded: Date()),
+        Flashcard(word: "World", translation: "Mondo", isStarred: true, dateAdded: Date())
     ]))
 }
+

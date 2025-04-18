@@ -25,19 +25,15 @@ struct ContentView: View {
     }
     
     private func speakTranslation() {
-        do {
-            let textToSpeak = viewModel.isTextToBraille ? viewModel.brailleOutput : viewModel.textInput
-            guard !textToSpeak.isEmpty else { return }
-            
-            let utterance = AVSpeechUtterance(string: textToSpeak)
-            if let voice = AVSpeechSynthesisVoice(language: selectedLanguage) {
-                utterance.voice = voice
-            }
-            utterance.rate = 0.5
-            synthesizer.speak(utterance)
-        } catch {
-            print("Speech synthesis error: \(error.localizedDescription)")
+        let textToSpeak = viewModel.isTextToBraille ? viewModel.brailleOutput : viewModel.textInput
+        guard !textToSpeak.isEmpty else { return }
+        
+        let utterance = AVSpeechUtterance(string: textToSpeak)
+        if let voice = AVSpeechSynthesisVoice(language: selectedLanguage) {
+            utterance.voice = voice
         }
+        utterance.rate = 0.5
+        synthesizer.speak(utterance)
     }
     
   
@@ -50,9 +46,9 @@ struct ContentView: View {
                     // Text Input Section
                     VStack(alignment: .leading, spacing: 5) {
                         HStack {
-                           
                             Text(viewModel.isTextToBraille ? LocalizedStringKey("text_label") : LocalizedStringKey("braille_label"))
-
+                                .accessibilityLabel(viewModel.isTextToBraille ? LocalizedStringKey("text_label") : LocalizedStringKey("braille_label"))
+                                .accessibilityHint(LocalizedStringKey("enter_text_hint"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .font(.title)
                                 .fontWeight(.semibold)
@@ -63,6 +59,8 @@ struct ContentView: View {
                         }
                         
                         TextField(LocalizedStringKey(viewModel.placeholderText()), text: $viewModel.textInput, axis: .vertical)
+                            .accessibilityLabel(LocalizedStringKey("text_label"))
+                            .accessibilityHint(LocalizedStringKey("enter_text_hint"))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             .padding()
                             .frame(minHeight: 80)
@@ -90,6 +88,8 @@ struct ContentView: View {
                                 .padding()
                                 .background(Circle().stroke(Color.blue, lineWidth: 2))
                         }
+                        .accessibilityLabel(NSLocalizedString("swap_button_label", comment: ""))
+                        .accessibilityHint(NSLocalizedString("swap_button_hint", comment: ""))
                         
                         Spacer()
                             .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 60:20)
@@ -105,12 +105,16 @@ struct ContentView: View {
                                 .padding()
                                 .background(Circle().stroke(Color.blue, lineWidth: 2))
                         }
+                        .accessibilityLabel(NSLocalizedString("add_flashcard_label", comment: ""))
+                        .accessibilityHint(NSLocalizedString("add_flashcard_hint", comment: ""))
                     }
                     .padding(.top, 5.0)
                     
                     // Braille Output Section
                     VStack(alignment: .leading, spacing: 5) {
                         Text(viewModel.isTextToBraille ? LocalizedStringKey("braille_label") : LocalizedStringKey("text_label"))
+                            .accessibilityLabel(viewModel.isTextToBraille ? LocalizedStringKey("braille_label") : LocalizedStringKey("text_label"))
+                            .accessibilityHint(LocalizedStringKey("swipe_to_hear"))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             .font(.title)
                             .fontWeight(.semibold)
@@ -123,6 +127,10 @@ struct ContentView: View {
                             
                             // Nella sezione Braille Output, modifica il TextField così:
                             TextField(LocalizedStringKey("translation"), text: $viewModel.brailleOutput, axis: .vertical)
+                                .accessibilityLabel(LocalizedStringKey("translation"))
+                                .accessibilityHint(viewModel.isTextToBraille ? 
+                                    LocalizedStringKey("tap_to_hear_braille_translation") : 
+                                    LocalizedStringKey("tap_to_hear_text_translation"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .font(.custom("Courier", size: 20))
                                 .padding()
@@ -158,6 +166,8 @@ struct ContentView: View {
                         }) {
                             Image(systemName: "camera")
                                 .font(.system(size: 25))
+                                .accessibilityLabel(LocalizedStringKey("camera_button_label"))
+                                .accessibilityHint(LocalizedStringKey("camera_button_hint"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .foregroundColor(.blue)
                                 .padding()
@@ -183,12 +193,16 @@ struct ContentView: View {
                             viewModel.textInput = result
                             viewModel.updateTranslation()
                         }
+                        .accessibilityLabel(NSLocalizedString("speech_button", comment: ""))
+                        .accessibilityHint(NSLocalizedString("start_speech_recognition", comment: ""))
                     }
                     .padding(.top, 5)
                     
                     // History Section
                     HStack {
                         Text(LocalizedStringKey("history"))
+                            .accessibilityLabel(LocalizedStringKey("history"))
+                            .accessibilityHint(LocalizedStringKey("history_section_hint"))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             .foregroundColor(.blue)
                             .font(.title)
@@ -202,6 +216,8 @@ struct ContentView: View {
                             viewModel.showingFavorites.toggle()
                         }) {
                             Text(LocalizedStringKey("view_favorites"))
+                                .accessibilityLabel(LocalizedStringKey("view_favorites"))
+                                .accessibilityHint(LocalizedStringKey("tap_to_open_favorites_view"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .foregroundColor(.blue)
                                
@@ -255,6 +271,8 @@ struct ContentView: View {
                         showSettings.toggle()
                     } label: {
                         Image(systemName: "gear.circle")
+                            .accessibilityLabel(LocalizedStringKey("settings_button"))
+                            .accessibilityHint(LocalizedStringKey("tap_to_open_settings_view"))
                             .foregroundColor(.blue)
                             .font(.system(size: 25))
                     }

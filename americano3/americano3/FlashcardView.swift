@@ -16,19 +16,25 @@ struct FlashcardView: View {
         VStack {
             // Flashcard content (click to see details)
             VStack(alignment: .leading) {
-                Text(flashcard.word.isEmpty ? "Word" : flashcard.word)
+                Text(flashcard.word.isEmpty ? NSLocalizedString("word", comment: "") : flashcard.word)
+                    .accessibilityLabel(flashcard.word.isEmpty ? 
+                        NSLocalizedString("empty_word", comment: "") : 
+                        String(format: NSLocalizedString("word_label", comment: ""), flashcard.word))
+                    .accessibilityHint(NSLocalizedString("word_flashcard_hint", comment: ""))
                     .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                     .font(.headline)
                     .fontWeight(.bold)
                     .foregroundColor(.gray)
-                    .accessibilityLabel(flashcard.word.isEmpty ? "Empty word field" : flashcard.word)
 
-                Text(flashcard.translation.isEmpty ? "Translation" : flashcard.translation)
+                Text(flashcard.translation.isEmpty ? NSLocalizedString("translation", comment: "") : flashcard.translation)
+                    .accessibilityLabel(flashcard.translation.isEmpty ? 
+                        NSLocalizedString("empty_translation", comment: "") : 
+                        String(format: NSLocalizedString("translation_label", comment: ""), flashcard.translation))
+                    .accessibilityHint(NSLocalizedString("translation_flashcard_hint", comment: ""))
                     .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                     .font(.headline)
                     .foregroundColor(.black)
                     .padding(.top, 2)
-                    .accessibilityLabel(flashcard.translation.isEmpty ? "Empty translation field" : flashcard.translation)
             }
             .padding()
             .onTapGesture {
@@ -54,8 +60,10 @@ struct FlashcardView: View {
                         .foregroundColor(.blue)
                         .font(.title)
                         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                        .accessibilityLabel(flashcard.isStarred ? "Remove from favorites" : "Add to favorites")
-                        .accessibilityHint("Double tap to toggle favorite status")
+                        .accessibilityLabel(flashcard.isStarred ? 
+                            NSLocalizedString("unstar_flashcard", comment: "") : 
+                            NSLocalizedString("star_flashcard", comment: ""))
+                        .accessibilityHint(NSLocalizedString("star_button_hint", comment: ""))
                 }
                 .padding()
             }
@@ -85,7 +93,9 @@ struct FlashcardView: View {
 
     // Accessibility announcement for favorites toggle
     private func announceStarStatus() {
-        let status = flashcard.isStarred ? "Added to favorites" : "Removed from favorites"
+        let status = flashcard.isStarred ? 
+            NSLocalizedString("added_to_favorites", comment: "") : 
+            NSLocalizedString("removed_from_favorites", comment: "")
         UIAccessibility.post(notification: .announcement, argument: status)
     }
 }

@@ -21,18 +21,18 @@ struct Importer: View {
         VStack {
             Menu {
                 Button(action: { showImporter = true }) {
-                    Label(LocalizedStringKey("import_attach_files"), systemImage: "folder")
+                    Label(NSLocalizedString("import_attach_files", comment: ""), systemImage: "folder")
                         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                 }
-                .accessibilityLabel(LocalizedStringKey("import_attach_files"))
-                .accessibilityHint(LocalizedStringKey("import_file_hint"))
+                .accessibilityLabel(NSLocalizedString("import_attach_files", comment: ""))
+                .accessibilityHint(NSLocalizedString("import_file_hint", comment: ""))
 
                 Button(action: { showImagePicker = true }) {
-                    Label(LocalizedStringKey("import_attach_photos"), systemImage: "photo")
+                    Label(NSLocalizedString("import_attach_photos", comment: ""), systemImage: "photo")
                         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                 }
-                .accessibilityLabel(LocalizedStringKey("import_attach_photos"))
-                .accessibilityHint(LocalizedStringKey("import_photo_hint"))
+                .accessibilityLabel(NSLocalizedString("import_attach_photos", comment: ""))
+                .accessibilityHint(NSLocalizedString("import_photo_hint", comment: ""))
             } label: {
                 ZStack {
                     Image(systemName: "square.and.arrow.up")
@@ -41,8 +41,8 @@ struct Importer: View {
                         .foregroundColor(.blue)
                         .padding()
                         .background(Circle().stroke(Color.blue, lineWidth: 2))
-                        .accessibilityLabel("Import options")
-                        .accessibilityHint("Tap to choose between attaching a file or a photo")
+                        .accessibilityLabel(NSLocalizedString("import_options", comment: ""))
+                        .accessibilityHint(NSLocalizedString("import_options_hint", comment: ""))
                 }
             }
             .accessibilityElement(children: .combine)
