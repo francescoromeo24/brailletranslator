@@ -54,37 +54,6 @@ struct OnboardingView: View {
     }
 }
 
-struct OnboardingPage: Identifiable {
-    let id = UUID()
-    let title: String
-    let description: String
-    let imageName: String
-}
-
-struct OnboardingPageView: View {
-    let page: OnboardingPage
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            Image(systemName: page.imageName)
-                .font(.system(size: 60))
-                .foregroundColor(.blue)
-                .padding()
-            
-            Text(page.title)
-                .font(.title)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-            
-            Text(page.description)
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-        }
-        .padding()
-    }
-}
-
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()

@@ -34,11 +34,13 @@ struct FavoritesView: View {
                                             NSLocalizedString("empty_word", comment: "") : 
                                             String(format: NSLocalizedString("word_label", comment: ""), flashcard.word))
                                         .accessibilityHint(NSLocalizedString("word_flashcard_hint", comment: ""))
+                                        .foregroundColor(.gray) // Added gray color for word
                                     Text(flashcard.translation.isEmpty ? NSLocalizedString("translation", comment: "") : flashcard.translation)
                                         .accessibilityLabel(flashcard.translation.isEmpty ? 
                                             NSLocalizedString("empty_translation", comment: "") : 
                                             String(format: NSLocalizedString("translation_label", comment: ""), flashcard.translation))
                                         .accessibilityHint(NSLocalizedString("translation_flashcard_hint", comment: ""))
+                                        .foregroundColor(.black) // Added black color for translation
                                 }
                                 .padding()
                                 
@@ -50,7 +52,7 @@ struct FavoritesView: View {
                                     }) {
                                         Image(systemName: "star.fill")
                                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                                            .foregroundColor(flashcard.isStarred ? .yellow : .blue)
+                                            .foregroundColor(flashcard.isStarred ? .blue : .blue)
                                             .font(.title)
                                             .accessibilityLabel(flashcard.isStarred ?
                                                 LocalizedStringKey("unstar_flashcard") :

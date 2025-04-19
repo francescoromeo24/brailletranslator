@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct OnboardingPageView: View {
+    let page: OnboardingPage
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 20) {
+            Image(systemName: page.imageName)
+                .font(.system(size: 60))
+                .foregroundColor(.blue)
+                .padding()
+            
+            Text(page.title)
+                .font(.title)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+            
+            Text(page.description)
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+        .padding()
     }
 }
 
+
 #Preview {
-    OnboardingPageView()
+    OnboardingPageView(page: OnboardingPage(
+        title: "Welcome",
+        description: "This is a sample onboarding page",
+        imageName: "textformat.abc"
+    ))
 }

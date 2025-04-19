@@ -134,3 +134,6 @@
 "braille_description" = "Explore braille representations of words and characters";
 "next" = "Next";
 "get_started" = "Get Started";
+"stop_recording" = "Stop recording";
+"start_recording" = "Start recording";
+"speech_recognition_hint" = "Double tap to start or stop speech recognition";

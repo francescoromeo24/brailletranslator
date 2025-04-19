@@ -5,12 +5,13 @@
 //  Created by Francesco Romeo on 02/01/25.
 //
 import SwiftUI
-import AVFoundation // Add this import
+import AVFoundation
 
 struct FlashcardDetailView: View {
     let flashcard: Flashcard
     let synthesizer = AVSpeechSynthesizer()
-    @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.language.languageCode?.identifier ?? "en"
+    @AppStorage("selectedLanguage")
+    private var selectedLanguage = Locale.current.language.languageCode?.identifier ?? "en"
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {

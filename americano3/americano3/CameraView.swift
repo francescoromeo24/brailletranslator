@@ -66,3 +66,9 @@ struct CameraView: UIViewControllerRepresentable {
         }
     }
 }
+
+#Preview {
+    CameraView(isBraille: false) { recognizedText in
+        print("Recognized text: \(recognizedText)")
+    }
+}

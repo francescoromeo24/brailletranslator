@@ -32,14 +32,5 @@ struct ContainerView: View {
 }
 
 #Preview {
-    Group {
-        ContainerView()
-            .preferredColorScheme(.light)
-        
-        ContainerView()
-            .preferredColorScheme(.dark)
-        
-        ContainerView()
-            .environment(\.sizeCategory, .accessibilityExtraExtraLarge)
-    }
+    ContainerView()
 }

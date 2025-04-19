@@ -21,7 +21,7 @@ struct SpeechRecognizerView: View {
                 speechRecognizer.stopRecording()
             } else {
                 speechRecognizer.startRecording { result in
-                    onTranscriptionResult(result) // Returns the transcribed result to ContentView
+                    onTranscriptionResult(result)
                 }
             }
             isRecording.toggle()
@@ -35,6 +35,11 @@ struct SpeechRecognizerView: View {
                     .background(Circle().fill(isRecording ? Color.red : Color("Background")).stroke(Color.blue, lineWidth: 2))
             }
         }
+        .accessibilityLabel(isRecording ? 
+            NSLocalizedString("stop_recording", comment: "") : 
+            NSLocalizedString("start_recording", comment: ""))
+        .accessibilityHint(NSLocalizedString("speech_recognition_hint", comment: ""))
+        .accessibilityAddTraits(.isButton)
     }
 }
 
