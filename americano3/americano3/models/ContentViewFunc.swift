@@ -130,8 +130,7 @@ class ContentViewFunc: ObservableObject {
         }
     }
 
-    // Returns appropriate placeholder text based on translation mode
-    // Returns appropriate placeholder text based on translation mode
+   
     func placeholderText() -> String {
         if isTextToBraille {
             return textInput.isEmpty ? NSLocalizedString("enter_text_placeholder", comment: "Placeholder for text input") : ""

@@ -62,6 +62,7 @@ struct ContentView: View {
                         }
                         
                         TextField(LocalizedStringKey(viewModel.placeholderText()), text: $viewModel.textInput, axis: .vertical)
+                            .foregroundColor(colorScheme == .dark ? .white : .gray)
                             .accessibilityLabel(LocalizedStringKey("text_label"))
                             .accessibilityHint(LocalizedStringKey("enter_text_hint"))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
@@ -127,9 +128,12 @@ struct ContentView: View {
                         
                         // Display the translated Braille output
                         ScrollView(.vertical, showsIndicators: true) {
-                            TextField(LocalizedStringKey("translation"), text: $viewModel.brailleOutput, axis: .vertical)
+                            TextField(viewModel.isTextToBraille ? LocalizedStringKey("output_braille_placeholder") : LocalizedStringKey("output_text_placeholder"), 
+                                     text: $viewModel.brailleOutput, 
+                                     axis: .vertical)
+                                .foregroundColor(colorScheme == .dark ? .white : .gray)  // White in dark mode, gray in light mode
                                 .accessibilityLabel(LocalizedStringKey("translation"))
-                                .accessibilityHint(viewModel.isTextToBraille ? 
+                                .accessibilityHint(viewModel.isTextToBraille ?
                                     LocalizedStringKey("tap_to_hear_braille_translation") : 
                                     LocalizedStringKey("tap_to_hear_text_translation"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)

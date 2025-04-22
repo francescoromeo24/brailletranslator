@@ -140,3 +140,5 @@
 
 "enter_text_placeholder" = "Entrez du texte";
 "enter_braille_placeholder" = "⠑⠝⠞⠗⠑⠵ ⠞⠑⠭⠞⠑";
+"output_text_placeholder" = "Traduction";
+"output_braille_placeholder" = "⠞⠗⠁⠙⠥⠉⠞⠊⠕⠝";
