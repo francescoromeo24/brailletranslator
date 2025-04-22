@@ -134,3 +134,6 @@
 "braille_description" = "Explore braille representations of words and characters";
 "next" = "Next";
 "get_started" = "Get Started";
+
+"enter_text_placeholder" = "Inserir texto";
+"enter_braille_placeholder" = "⠊⠝⠎⠑⠗⠊⠗ ⠞⠑⠭⠞⠕";

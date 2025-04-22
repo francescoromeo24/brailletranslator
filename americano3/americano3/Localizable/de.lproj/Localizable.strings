@@ -135,3 +135,6 @@
 "next" = "Weiter";
 "get_started" = "Loslegen";
 "speech_recognition_hint" = "Doppeltippen, um die Spracherkennung zu starten oder zu stoppen";
+
+"enter_text_placeholder" = "Text eingeben";
+"enter_braille_placeholder" = "⠞⠑⠭⠞ ⠑⠊⠝⠛⠑⠃⠑⠝";

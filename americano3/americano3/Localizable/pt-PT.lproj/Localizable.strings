@@ -137,3 +137,6 @@
 "stop_recording" = "Parar gravação";
 "start_recording" = "Iniciar gravação";
 "speech_recognition_hint" = "Toque duas vezes para iniciar ou parar o reconhecimento de voz";
+
+"enter_text_placeholder" = "Inserir texto";
+"enter_braille_placeholder" = "⠊⠝⠎⠑⠗⠊⠗ ⠞⠑⠭⠞⠕";

@@ -56,6 +56,8 @@ class ContentViewFunc: ObservableObject {
         let temp = textInput
         textInput = brailleOutput
         brailleOutput = temp
+        textInput = ""
+        brailleOutput = ""
         updateTranslation()
         UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
     }
@@ -129,8 +131,13 @@ class ContentViewFunc: ObservableObject {
     }
 
     // Returns appropriate placeholder text based on translation mode
+    // Returns appropriate placeholder text based on translation mode
     func placeholderText() -> String {
-        return isTextToBraille ? "Enter text" : "⠑⠝⠞⠑⠗ ⠃⠗⠁⠊⠇⠇⠑"
+        if isTextToBraille {
+            return textInput.isEmpty ? NSLocalizedString("enter_text_placeholder", comment: "Placeholder for text input") : ""
+        } else {
+            return textInput.isEmpty ? NSLocalizedString("enter_braille_placeholder", comment: "Placeholder for braille input") : ""
+        }
     }
 
     // Hides keyboard
@@ -186,7 +193,7 @@ class ContentViewFunc: ObservableObject {
     
     @Published var isBrailleKeyboardActive = false
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-    let supportedLanguages = ["en", "it", "fr", "es", "de"]
+    let supportedLanguages = ["en", "it", "es", "fr", "de", "pt-PT", "pt-BR"]  // Aggiunto entrambe le varianti
     
     func activateBrailleKeyboard() {
         isBrailleKeyboardActive = true
@@ -238,6 +245,5 @@ class ContentViewFunc: ObservableObject {
             
             synthesizer.speak(utterance)
         }
-        // ... rest of existing functions ...
     }
 

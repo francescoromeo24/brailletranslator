@@ -50,6 +50,7 @@ struct OnboardingView: View {
                     .cornerRadius(10)
             }
             .padding()
+            .background(Color("Background"))
         }
     }
 }

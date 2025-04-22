@@ -137,3 +137,6 @@
 "stop_recording" = "Stop recording";
 "start_recording" = "Start recording";
 "speech_recognition_hint" = "Double tap to start or stop speech recognition";
+
+"enter_text_placeholder" = "Enter text";
+"enter_braille_placeholder" = "⠑⠝⠞⠑⠗ ⠃⠗⠁⠊⠇⠇⠑";

@@ -31,12 +31,17 @@ struct SettingsView: View {
                 
                 
                 Section(header: Text(LocalizedStringKey("settings_privacy_section"))) {
-                    NavigationLink(destination: EmptyView()) {
+                    Button(action: {
+                        if let privacyUrl = URL(string: "https://sites.google.com/view/braille-translator-privacy/home-page") {
+                            UIApplication.shared.open(privacyUrl)
+                        }
+                    }) {
                         Label {
                             Text(LocalizedStringKey("settings_privacy_policy"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .accessibilityLabel(LocalizedStringKey("settings_privacy_policy"))
                                 .accessibilityHint(LocalizedStringKey("settings_privacy_hint"))
+                                .foregroundColor(.primary) // Added this line
                         } icon: {
                             Image(systemName: "doc.fill")
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
@@ -46,18 +51,6 @@ struct SettingsView: View {
                     .accessibilityElement(children: .combine)
                 }
                 
-                Section {
-                    HStack {
-                        Text(NSLocalizedString("settings_version", comment: ""))
-                        Spacer()
-                        Text("\(appVersion) (\(buildNumber))")
-                            .foregroundColor(.gray)
-                            .accessibilityLabel(String(format: "%@ %@ (%@)", 
-                                        NSLocalizedString("settings_version", comment: ""),
-                                        appVersion, 
-                                        buildNumber))
-                    }
-                }
             }
             .navigationTitle(LocalizedStringKey("settings_title"))
             .toolbar {
@@ -73,6 +66,7 @@ struct SettingsView: View {
                     .accessibilityHint(LocalizedStringKey("settings_close_hint"))
                 }
             }
+            .background(Color("Background"))
         }
     }
 }

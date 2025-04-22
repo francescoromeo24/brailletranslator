@@ -41,7 +41,9 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: 5) {
+                    Spacer()
+                        .frame(height: 10)
                     
                     // Text Input Section
                     VStack(alignment: .leading, spacing: 5) {
@@ -52,6 +54,7 @@ struct ContentView: View {
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .font(.title)
                                 .fontWeight(.semibold)
+                                .foregroundColor(colorScheme == .dark ? .white : .gray)
                                 
                             
                             Spacer()
@@ -118,14 +121,12 @@ struct ContentView: View {
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                             .font(.title)
                             .fontWeight(.semibold)
-                            .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                            .foregroundColor(colorScheme == .dark ? .white : .gray)
                             .padding([.top, .leading], 10.0)
+                            
                         
                         // Display the translated Braille output
                         ScrollView(.vertical, showsIndicators: true) {
-                            
-                            
-                            // Nella sezione Braille Output, modifica il TextField così:
                             TextField(LocalizedStringKey("translation"), text: $viewModel.brailleOutput, axis: .vertical)
                                 .accessibilityLabel(LocalizedStringKey("translation"))
                                 .accessibilityHint(viewModel.isTextToBraille ? 
@@ -196,7 +197,7 @@ struct ContentView: View {
                         .accessibilityLabel(NSLocalizedString("speech_button", comment: ""))
                         .accessibilityHint(NSLocalizedString("start_speech_recognition", comment: ""))
                     }
-                    .padding(.top, 5)
+                    .padding(.bottom, 10)
                     
                     // History Section
                     HStack {
@@ -222,6 +223,7 @@ struct ContentView: View {
                                 .foregroundColor(.blue)
                                
                         }
+                        
                     }
                     .padding(.horizontal)
                     
