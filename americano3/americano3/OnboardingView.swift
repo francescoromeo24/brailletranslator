@@ -44,14 +44,14 @@ struct OnboardingView: View {
                      NSLocalizedString("get_started", comment: "") : 
                      NSLocalizedString("next", comment: ""))
                     .padding()
-                    .frame(maxWidth: .infinity)
+                    .frame(width:200, height:50)
                     .background(Color.blue)
                     .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .cornerRadius(25)
             }
             .padding()
-            .background(Color("Background"))
         }
+        .background(Color("Background").ignoresSafeArea())  // Aggiungi questo
     }
 }
 

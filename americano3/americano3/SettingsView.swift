@@ -6,7 +6,7 @@ struct SettingsView: View {
     @State private var buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 Section(header: Text(LocalizedStringKey("settings_app_permissions"))){
                     NavigationLink(destination: EmptyView()) {
@@ -52,6 +52,8 @@ struct SettingsView: View {
                 }
                 
             }
+            .scrollContentBackground(.hidden)
+            .background(Color("Background"))
             .navigationTitle(LocalizedStringKey("settings_title"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -60,13 +62,12 @@ struct SettingsView: View {
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.blue)
                     }
                     .accessibilityLabel(LocalizedStringKey("settings_close"))
                     .accessibilityHint(LocalizedStringKey("settings_close_hint"))
                 }
             }
-            .background(Color("Background"))
         }
     }
 }

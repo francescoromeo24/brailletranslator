@@ -8,6 +8,7 @@ import SwiftUI
 import UIKit
 
 struct FavoritesView: View {
+    @Environment(\.dismiss) private var dismiss
     @Binding var flashcards: [Flashcard]
     
     let columns = [
@@ -84,6 +85,19 @@ struct FavoritesView: View {
             }
             .navigationTitle(LocalizedStringKey("favorites"))
             .dynamicTypeSize(..<DynamicTypeSize.large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                            .foregroundColor(.blue)  // Changed from .gray to .blue
+                    }
+                    .accessibilityLabel(LocalizedStringKey("settings_close"))
+                    .accessibilityHint(LocalizedStringKey("settings_close_hint"))
+                }
+            }
             .background(Color("Background"))
         }
     }

@@ -62,7 +62,6 @@ struct ContentView: View {
                         }
                         
                         TextField(LocalizedStringKey(viewModel.placeholderText()), text: $viewModel.textInput, axis: .vertical)
-                            .foregroundColor(colorScheme == .dark ? .white : .gray)
                             .accessibilityLabel(LocalizedStringKey("text_label"))
                             .accessibilityHint(LocalizedStringKey("enter_text_hint"))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)

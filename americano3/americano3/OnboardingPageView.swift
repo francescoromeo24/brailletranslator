@@ -9,25 +9,31 @@ import SwiftUI
 
 struct OnboardingPageView: View {
     let page: OnboardingPage
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack(spacing: 20) {
-            Image(systemName: page.imageName)
-                .font(.system(size: 60))
-                .foregroundColor(.blue)
-                .padding()
-            
             Text(page.title)
                 .font(.title)
                 .fontWeight(.bold)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
                 .multilineTextAlignment(.center)
             
             Text(page.description)
                 .font(.body)
                 .multilineTextAlignment(.center)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
                 .padding(.horizontal)
+            
+            Image(systemName: page.imageName)
+                .font(.system(size: 60))
+                .foregroundColor(.blue)
+                .padding()
         }
         .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("Background"))
+        .ignoresSafeArea()
     }
 }
 
