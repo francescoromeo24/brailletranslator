@@ -8,7 +8,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text(LocalizedStringKey("settings_app_permissions"))){
+                Section(header: Text(LocalizedStringKey("settings_app_permissions"))) {
                     NavigationLink(destination: EmptyView()) {
                         Label {
                             Text(LocalizedStringKey("settings_permissions"))
@@ -29,19 +29,16 @@ struct SettingsView: View {
                     })
                 }
                 
-                
                 Section(header: Text(LocalizedStringKey("settings_privacy_section"))) {
                     Button(action: {
-                        if let privacyUrl = URL(string: "https://sites.google.com/view/braille-translator-privacy/home-page") {
-                            UIApplication.shared.open(privacyUrl)
-                        }
+                        UIApplication.shared.open(localizedPrivacyPolicyURL())
                     }) {
                         Label {
                             Text(LocalizedStringKey("settings_privacy_policy"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .accessibilityLabel(LocalizedStringKey("settings_privacy_policy"))
                                 .accessibilityHint(LocalizedStringKey("settings_privacy_hint"))
-                                .foregroundColor(.primary) // Added this line
+                                .foregroundColor(.primary)
                         } icon: {
                             Image(systemName: "doc.fill")
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
@@ -50,7 +47,6 @@ struct SettingsView: View {
                     }
                     .accessibilityElement(children: .combine)
                 }
-                
             }
             .scrollContentBackground(.hidden)
             .background(Color("Background"))
@@ -68,6 +64,26 @@ struct SettingsView: View {
                     .accessibilityHint(LocalizedStringKey("settings_close_hint"))
                 }
             }
+        }
+    }
+    
+    // Funzione per selezionare l'URL della privacy policy in base alla lingua
+    func localizedPrivacyPolicyURL() -> URL {
+        let languageCode = Locale.current.language.languageCode?.identifier ?? "en"
+        
+        switch languageCode {
+        case "it":
+            return URL(string: "https://sites.google.com/view/braille-translator-privacy/braille-translator-privacy-policy-it")!
+        case "fr":
+            return URL(string: "https://sites.google.com/view/braille-translator-privacy/braille-translator-privacy-policy-fr")!
+        case "de":
+            return URL(string: "https://sites.google.com/view/braille-translator-privacy/braille-translator-privacy-policy-de")!
+        case "pt":
+            return URL(string: "https://sites.google.com/view/braille-translator-privacy/braille-translator-privacy-policy-pt")!
+        case "pt-BR":
+            return URL(string: "https://sites.google.com/view/braille-translator-privacy/braille-translator-privacy-policy-br")!
+        default:
+            return URL(string: "https://sites.google.com/view/braille-translator-privacy/home-page")! // fallback inglese
         }
     }
 }
