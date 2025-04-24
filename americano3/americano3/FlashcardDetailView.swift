@@ -45,11 +45,11 @@ struct FlashcardDetailView: View {
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)                   .font(.custom("Courier", size: 20))
                             .tracking(5)
                             .foregroundColor(.black)
-                            .padding(8)
+                            .padding(10)
                             .background(Color.white)
                             .cornerRadius(8)
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.blue, lineWidth: 1))
-                            .accessibilityLabel(originalWord) // VoiceOver reads original world
+                            .accessibilityLabel(originalWord) 
                             .accessibilityHint(LocalizedStringKey("double_tap_hint"))
                             .onTapGesture {
                                 print("Tapped word: \(originalWord)")
