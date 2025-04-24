@@ -130,13 +130,13 @@ struct ContentView: View {
                             TextField(viewModel.isTextToBraille ? LocalizedStringKey("output_braille_placeholder") : LocalizedStringKey("output_text_placeholder"), 
                                      text: $viewModel.brailleOutput, 
                                      axis: .vertical)
-                                .foregroundColor(colorScheme == .dark ? .white : .gray)  // White in dark mode, gray in light mode
                                 .accessibilityLabel(LocalizedStringKey("translation"))
                                 .accessibilityHint(viewModel.isTextToBraille ?
                                     LocalizedStringKey("tap_to_hear_braille_translation") : 
                                     LocalizedStringKey("tap_to_hear_text_translation"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .font(.custom("Courier", size: 20))
+                                .tracking(5)
                                 .padding()
                                 .frame(minHeight: 80)
                                 .background(Color.white)

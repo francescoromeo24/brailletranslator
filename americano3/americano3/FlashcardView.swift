@@ -32,7 +32,8 @@ struct FlashcardView: View {
                         String(format: NSLocalizedString("translation_label", comment: ""), flashcard.translation))
                     .accessibilityHint(NSLocalizedString("translation_flashcard_hint", comment: ""))
                     .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-                    .font(.headline)
+                    .font(.custom("Courier", size: 20))
+                    .tracking(5)
                     .foregroundColor(.black)
                     .padding(.top, 2)
             }
