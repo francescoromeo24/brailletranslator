@@ -13,7 +13,7 @@ struct BraillePatternView: View {
         
         let deviceLanguage = Locale.current.language.languageCode?.identifier ?? "en"
         let supportedLanguages = ["en", "it", "es", "fr", "de", "pt-PT", "pt-BR"]
-        let languageToUse = supportedLanguages.contains(deviceLanguage) ? deviceLanguage : "en"
+        let languageToUse = supportedLanguages.first { deviceLanguage.hasPrefix($0) } ?? "en"
         
         let characterToSpeak: String
         switch letter {

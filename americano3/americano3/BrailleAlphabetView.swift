@@ -154,6 +154,19 @@ struct BrailleAlphabetView: View {
         "Ñ": [true, false, true, true, true, false, true, false],
         "Ç": [true, false, true, false, false, false, true, false],
 
+        "ã": [true, false, false, false, false, false, false, true], // a con tilde
+        "õ": [true, false, false, true, true, false, false, true], // o con tilde
+        "â": [true, false, false, false, false, true, true, false], // a con accento circonflesso
+        "ê": [true, false, false, true, false, true, true, false], // e con accento circonflesso
+        "ô": [true, false, false, true, true, true, true, false], // o con accento circonflesso
+        
+        // Versioni maiuscole
+        "Ã": [true, false, false, false, false, false, false, true],
+        "Õ": [true, false, false, true, true, false, false, true],
+        "Â": [true, false, false, false, false, true, true, false],
+        "Ê": [true, false, false, true, false, true, true, false],
+        "Ô": [true, false, false, true, true, true, true, false],
+
     ]
     
     

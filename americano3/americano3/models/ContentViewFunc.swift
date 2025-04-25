@@ -220,7 +220,7 @@ class ContentViewFunc: ObservableObject {
             let deviceLanguage = Locale.current.language.languageCode?.identifier ?? "en"
             
             // Supported languages with fallback
-            let supportedLanguages = ["en", "it", "es", "fr", "de"]
+            let supportedLanguages = ["en", "it", "es", "fr", "de", "pt-PT", "pt-BR"]
             let languageToUse = supportedLanguages.contains(deviceLanguage) ? deviceLanguage : "en"
             
             guard let voice = AVSpeechSynthesisVoice(language: languageToUse) else {
