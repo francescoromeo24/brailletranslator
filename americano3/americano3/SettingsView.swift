@@ -4,15 +4,21 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     @State private var buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationStack {
             List {
                 Section(header: Text(LocalizedStringKey("settings_app_permissions"))) {
-                    NavigationLink(destination: EmptyView()) {
+                    Button {
+                        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(settingsUrl)
+                        }
+                    } label: {
                         Label {
                             Text(LocalizedStringKey("settings_permissions"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
                                 .accessibilityHint(LocalizedStringKey("settings_permissions_hint"))
                         } icon: {
                             Image(systemName: "lock.fill")
@@ -22,14 +28,10 @@ struct SettingsView: View {
                     }
                     .accessibilityLabel(LocalizedStringKey("settings_permissions"))
                     .accessibilityElement(children: .combine)
-                    .simultaneousGesture(TapGesture().onEnded {
-                        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                            UIApplication.shared.open(settingsUrl)
-                        }
-                    })
                 }
                 
-                Section(header: Text(LocalizedStringKey("settings_privacy_section"))) {
+                Section(header: Text(LocalizedStringKey("settings_privacy_section")))
+                    {
                     Button(action: {
                         UIApplication.shared.open(localizedPrivacyPolicyURL())
                     }) {
