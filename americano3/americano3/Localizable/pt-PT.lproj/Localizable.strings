@@ -127,11 +127,11 @@
 "switch_translation_label" = "Alternar tradução";
 
 "welcome_title" = "Bem-vindo ao Braille Translator";
-"welcome_description" = "Traduza facilmente entre texto e Braille";
-"translation_title" = "Tradução fácil";
-"translation_description" = "Alternar entre os modos de texto para Braille e Braille para texto";
+"welcome_description" = "Leia, escreva e traduza em Braille em qualquer lugar";
+"create_wordlist_title" = "Crie sua lista de palavras";
+"create_wordlist_description" = "Guarde as suas flashcards nos favoritos";
 "braille_title" = "Aprenda Braille";
-"braille_description" = "Explore as representações Braille das palavras e caracteres";
+"braille_description" = "Descubra o alfabeto, os números e os símbolos Braille... em 7 línguas";
 "next" = "Próximo";
 "get_started" = "Começar";
 "stop_recording" = "Parar gravação";

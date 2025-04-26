@@ -8,17 +8,17 @@ struct OnboardingView: View {
         OnboardingPage(
             title: NSLocalizedString("welcome_title", comment: ""),
             description: NSLocalizedString("welcome_description", comment: ""),
-            imageName: "textformat.abc"
+            imageName: "Onboarding1"
         ),
         OnboardingPage(
-            title: NSLocalizedString("translation_title", comment: ""),
-            description: NSLocalizedString("translation_description", comment: ""),
-            imageName: "arrow.left.arrow.right"
+            title: NSLocalizedString("create_wordlist_title", comment: ""),
+            description: NSLocalizedString("create_wordlist_description", comment: ""),
+            imageName: "Onboarding2"
         ),
         OnboardingPage(
             title: NSLocalizedString("braille_title", comment: ""),
             description: NSLocalizedString("braille_description", comment: ""),
-            imageName: "brazilianrealsign"
+            imageName: "Onboarding3"
         )
     ]
     
@@ -30,8 +30,7 @@ struct OnboardingView: View {
                         .tag(index)
                 }
             }
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .tabViewStyle(.page(indexDisplayMode: .never))
             
             Button(action: {
                 if currentPage < pages.count - 1 {
@@ -49,9 +48,18 @@ struct OnboardingView: View {
                     .foregroundColor(.white)
                     .cornerRadius(25)
             }
-            .padding()
+            .padding(.vertical)
+            
+            HStack(spacing: 10) {
+                ForEach(0..<pages.count, id: \.self) { index in
+                    Circle()
+                        .fill(index == currentPage ? .blue : .gray)
+                        .frame(width: 10, height: 10)
+                }
+            }
+            .padding(.bottom)
         }
-        .background(Color("Background").ignoresSafeArea())  // Aggiungi questo
+        .background(Color("Background").ignoresSafeArea())  
     }
 }
 

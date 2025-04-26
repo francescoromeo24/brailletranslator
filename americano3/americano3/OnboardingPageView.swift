@@ -12,25 +12,40 @@ struct OnboardingPageView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text(page.title)
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(colorScheme == .dark ? .white : .black)
-                .multilineTextAlignment(.center)
+        VStack {
+            VStack(spacing: 20) {
+                Text(page.title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 20)
+                
+                Text(page.description)
+                    .font(.body)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+            }
+            .foregroundColor(colorScheme == .dark ? .white : .black)
+            .frame(maxWidth: 350, minHeight: 300)
             
-            Text(page.description)
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .foregroundColor(colorScheme == .dark ? .white : .black)
-                .padding(.horizontal)
             
-            Image(systemName: page.imageName)
-                .font(.system(size: 60))
-                .foregroundColor(.blue)
-                .padding()
+            if page.imageName == "Onboarding1" || page.imageName == "Onboarding3" {
+                let imageAsset = "\(page.imageName)\(colorScheme == .dark ? "Dark" : "Light")"
+                Image(imageAsset)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 300)
+                    .padding(.bottom,40)
+            } else {
+                Image(page.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 300)
+                    .padding(.bottom,40)
+            }
+            
+            Spacer(minLength: 50)
         }
-        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("Background"))
         .ignoresSafeArea()
