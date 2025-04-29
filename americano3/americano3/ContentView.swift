@@ -99,6 +99,7 @@ struct ContentView: View {
                         
                         // Button to add a flashcard
                         Button(action: {
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             viewModel.addFlashcard()
                         }) {
                             Image(systemName: "plus")
@@ -287,7 +288,12 @@ struct ContentView: View {
             .sheet(isPresented: $showSettings) {
                 SettingsView()
             }
+            .scrollContentBackground(.hidden)
             .background(Color("Background"))
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+            .contentShape(Rectangle())
         }
     }
     

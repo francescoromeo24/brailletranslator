@@ -32,8 +32,16 @@ let brailleDictionary: [Character: String] = [
     "!": "⠖",  // Exclamation mark
     "(": "⠦",  // Open parenthesis
     ")": "⠴",  // Close parenthesis
+    "[": "⠪",  // Open brackets
+    "]": "⠻",  // Close brackets
+    "{": "⠷",  // Open brackets
+    "}": "⠾",   // Close brackets
     "\"": "⠶", // Quotation marks
     "'": "⠄",  // Apostrophe
+    "“": "⠘⠦", // open quotes
+    "”": "⠘⠴", // close quotes
+    "‘": "⠄",  // accent
+    "’": "⠄", //accent
 
     // Special symbols
     "+": "⠖",  // Addition
