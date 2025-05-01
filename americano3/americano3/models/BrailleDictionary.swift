@@ -24,81 +24,37 @@ let brailleDictionary: [Character: String] = [
     "6": "⠼⠋", "7": "⠼⠛", "8": "⠼⠓", "9": "⠼⠊", "0": "⠼⠚",
 
     // Punctuation
-    ".": "⠲",  // Period
-    ",": "⠂",  // Comma
-    ";": "⠆",  // Semicolon
-    ":": "⠒",  // Colon
-    "?": "⠦",  // Question mark
-    "!": "⠖",  // Exclamation mark
-    "(": "⠦",  // Open parenthesis
-    ")": "⠴",  // Close parenthesis
-    "[": "⠪",  // Open brackets
-    "]": "⠻",  // Close brackets
-    "{": "⠷",  // Open brackets
-    "}": "⠾",   // Close brackets
-    "\"": "⠶", // Quotation marks
-    "'": "⠄",  // Apostrophe
-    "“": "⠘⠦", // open quotes
-    "”": "⠘⠴", // close quotes
-    "‘": "⠄",  // accent
-    "’": "⠄", //accent
+    ".": "⠲", ",": "⠂", ";": "⠆", ":": "⠒", "?": "⠦", "!": "⠖",
+    "(": "⠦", ")": "⠴", "[": "⠪", "]": "⠻", "{": "⠷", "}": "⠾",
+    "\"": "⠶", "'": "⠄", "“": "⠘⠦", "”": "⠘⠴", "‘": "⠄", "’": "⠄",
 
     // Special symbols
-    "+": "⠖",  // Addition
-    "-": "⠤",  // Subtraction
-    "*": "⠦",  // Multiplication
-    "/": "⠌",  // Division
-    "=": "⠶",  // Equals
-    "@": "⠈⠁", // At symbol
-    "#": "⠼",  // Number sign
-    "&": "⠯",  // Ampersand
-    "%": "⠨⠴", // Percent
-    "$": "⠈⠎", // Dollar
-    "€": "⠈⠑", // Euro
+    "+": "⠖", "-": "⠤", "*": "⠦", "/": "⠌", "=": "⠶", "@": "⠈⠁",
+    "#": "⠼", "&": "⠯", "%": "⠨⠴", "$": "⠈⠎", "€": "⠈⠑",
 
     // Additional accented letters
-    "â": "⠢",  // a with circumflex
-    "ê": "⠣",  // e with circumflex
-    "î": "⠩",  // i with circumflex
-    "ô": "⠹",  // o with circumflex
-    "û": "⠱",  // u with circumflex
-    "ë": "⠫",  // e with umlaut
-    "ï": "⠻",  // i with umlaut
-    "ü": "⠳",  // u with umlaut
-    "ñ": "⠻",  // n with tilde
-    "ç": "⠯",  // c with cedilla
-    
+    "â": "⠢", "ê": "⠣", "î": "⠩", "ô": "⠹", "û": "⠱", "ë": "⠫",
+    "ï": "⠻", "ü": "⠳", "ñ": "⠻", "ç": "⠯",
+
     // Additional uppercase accented letters
-    "Â": "⠠⠢", // A with circumflex
-    "Ê": "⠠⠣", // E with circumflex
-    "Î": "⠠⠩", // I with circumflex
-    "Ô": "⠠⠹", // O with circumflex
-    "Û": "⠠⠱", // U with circumflex
-    "Ë": "⠠⠫", // E with umlaut
-    "Ï": "⠠⠻", // I with umlaut
-    "Ü": "⠠⠳", // U with umlaut
-    "Ñ": "⠠⠻", // N with tilde
-    "Ç": "⠠⠯", // C with cedilla
+    "Â": "⠠⠢", "Ê": "⠠⠣", "Î": "⠠⠩", "Ô": "⠠⠹", "Û": "⠠⠱",
+    "Ë": "⠠⠫", "Ï": "⠠⠻", "Ü": "⠠⠳", "Ñ": "⠠⠻", "Ç": "⠠⠯",
 
     // Additional punctuation
-    "…": "⠲⠲⠲", // Ellipsis
-    "–": "⠤⠤",  // En dash
-    "—": "⠤⠤⠤", // Em dash
-    "«": "⠦",    // Left guillemet
-    "»": "⠴",    // Right guillemet
-    "¿": "⠦",    // Inverted question mark
-    "¡": "⠖",    // Inverted exclamation mark
-    
+    "…": "⠲⠲⠲", "–": "⠤⠤", "—": "⠤⠤⠤", "«": "⠦", "»": "⠴", "¿": "⠦", "¡": "⠖",
+
     // Additional symbols
-    "°": "⠐⠂",  // Degree
-    "±": "⠖⠤",  // Plus-minus
-    "×": "⠦",    // Multiplication
-    "÷": "⠌",    // Division
-    "≠": "⠶⠱",  // Not equal
-    "≤": "⠶⠣",  // Less than or equal
-    "≥": "⠶⠜",  // Greater than or equal
-    "™": "⠞⠍",  // Trademark
-    "©": "⠉⠗",  // Copyright
-    "®": "⠗",    // Registered trademark
-    
+    "°": "⠐⠂", "±": "⠖⠤", "×": "⠦", "÷": "⠌", "≠": "⠶⠱", "≤": "⠶⠣", "≥": "⠶⠜", "™": "⠞⠍", "©": "⠉⠗", "®": "⠗",
+
+    // EXTRA LETTERS requested
+    "È": "⠈⠑", "é": "⠈⠑", "ě": "⠈⠑", "ẽ": "⠐⠑", "ē": "⠢⠑", "ė": "⠈⠑", "ę": "⠨⠑",
+    "ř": "⠈⠗", "ț": "⠈⠞", "ť": "⠈⠞", "þ": "⠹", "ý": "⠈⠽", "ŷ": "⠘⠽", "ÿ": "⠈⠽",
+    "ų": "⠨⠥", "ů": "⠈⠥", "ű": "⠘⠥", "ū": "⠢⠥", "ũ": "⠐⠥", "ú": "⠈⠥", "ù": "⠠⠥", "ǔ": "⠘⠥",
+    "į": "⠨⠊", "ı": "⠊", "ī": "⠢⠊", "ĩ": "⠐⠊", "ǐ": "⠘⠊", "í": "⠈⠊", "ì": "⠠⠊",
+    "ł": "⠐⠇", "ļ": "⠨⠇", "ľ": "⠈⠇", "à": "⠠⠁", "á": "⠈⠁", "ä": "⠐⠁", "ǎ": "⠘⠁",
+    "æ": "⠜", "ã": "⠐⠁", "å": "⠡⠁", "ā": "⠢⠁", "ă": "⠦⠁", "ą": "⠨⠁", "ß": "⠌",
+    "ş": "⠨⠎", "ș": "⠨⠎", "ś": "⠈⠎", "š": "⠘⠎", "ď": "⠈⠙", "ð": "⠹", "ğ": "⠨⠛",
+    "ġ": "⠈⠛", "ħ": "⠐⠓", "ķ": "⠨⠅", "ź": "⠈⠵", "ž": "⠘⠵", "ż": "⠨⠵", "ń": "⠈⠝",
+    "ņ": "⠨⠝", "ň": "⠘⠝", "^": "⠘", "_": "⠸⠤", "\\": "⠡", "|": "⠸⠌", "~": "⠘⠶",
+    "<": "⠣", ">": "⠜", "¥": "⠽⠩", "•": "⠐⠂"
 ]

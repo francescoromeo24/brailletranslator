@@ -53,33 +53,35 @@ struct BrailleAlphabetView: View {
         "y": [true, false, true, true, true, true],
         "z": [true, false, false, true, true, true],
         
-        // Uppercase letters (prefixed with ⠠)
-        "A": [true, false, false, false, false, false],
-                  "B": [true, true, false, false, false, false],
-                  "C": [true, false, true, false, false, false],
-                  "D": [true, false, true, true, false, false],
-                  "E": [true, false, false, true, false, false],
-                  "F": [true, true, true, false, false, false],
-                  "G": [true, true, true, true, false, false],
-                  "H": [true, true, false, true, false, false],
-                  "I": [false, true, true, false, false, false],
-                  "J": [false, true, true, true, false, false],
-                  "K": [true, false, false, false, true, false],
-                  "L": [true, true, false, false, true, false],
-                  "M": [true, false, true, false, true, false],
-                  "N": [true, false, true, true, true, false],
-                  "O": [true, false, false, true, true, false],
-                  "P": [true, true, true, false, true, false],
-                  "Q": [true, true, true, true, true, false],
-                  "R": [true, true, false, true, true, false],
-                  "S": [false, true, true, false, true, false],
-                  "T": [false, true, true, true, true, false],
-                  "U": [true, false, false, false, true, true],
-                  "V": [true, true, false, false, true, true],
-                  "W": [false, true, true, true, false, true],
-                  "X": [true, false, true, false, true, true],
-                  "Y": [true, false, true, true, true, true],
-                  "Z": [true, false, false, true, true, true],
+        
+        // Uppercase letters
+               "A": [true, false, false, false, false, true],
+               "B": [true, true, false, false, false, true],
+               "C": [true, false, true, false, false, true],
+               "D": [true, false, true, true, false, true],
+               "E": [true, false, false, true, false, true],
+               "F": [true, true, true, false, false, true],
+               "G": [true, true, true, true, false, true],
+               "H": [true, true, false, true, false, true],
+               "I": [false, true, true, false, false, true],
+               "J": [false, true, true, true, false, true],
+               "K": [true, false, false, false, true, true],
+               "L": [true, true, false, false, true, true],
+               "M": [true, false, true, false, true, true],
+               "N": [true, false, true, true, true, true],
+               "O": [true, false, false, true, true, true],
+               "P": [true, true, true, false, true, true],
+               "Q": [true, true, true, true, true, true],
+               "R": [true, true, false, true, true, true],
+               "S": [false, true, true, false, true, true],
+               "T": [false, true, true, true, true, true],
+               "U": [true, false, false, false, true, true],
+               "V": [true, true, false, false, true, true],
+               "W": [false, true, true, true, false, true],
+               "X": [true, false, true, false, true, true],
+               "Y": [true, false, true, true, true, true],
+               "Z": [true, false, false, true, true, true],
+               
     
         // Numbers (preceded by numeric prefix ⠼)
         "1": [true, false, false, false, false, false],
@@ -118,54 +120,53 @@ struct BrailleAlphabetView: View {
             "$": [true, true, false, true, false, true], // Dollar
             "€": [false, false, true, false, true, true], // Euro
 
-        // Accented letters
-        "à": [true, false, false, false, false, false, true, true], // a with grave
-        "è": [true, false, false, true, false, false, true, true], // e with grave
-        "é": [true, false, false, true, false, false, true, false], // e with acute
-        "ì": [false, true, true, false, false, false, true, true], // i with grave
-        "í": [false, true, true, false, false, false, true, false], // i with acute
-        "ò": [true, false, false, true, true, false, true, true], // o with grave
-        "ó": [true, false, false, true, true, false, true, false], // o with acute
-        "ù": [true, false, false, false, true, true, true, true], // u with grave
-        "ú": [true, false, false, false, true, true, true, false], // u with acute
-        "ä": [true, false, false, false, false, false, false, true], // a with umlaut
-        "ë": [true, false, false, true, false, false, false, true], // e with umlaut
-        "ï": [false, true, true, false, false, false, false, true], // i with umlaut
-        "ö": [true, false, false, true, true, false, false, true], // o with umlaut
-        "ü": [true, false, false, false, true, true, false, true], // u with umlaut
-        "ñ": [true, false, true, true, true, false, true, false], // n with tilde
-        "ç": [true, false, true, false, false, false, true, false], // c with cedilla
+        "à": [true, false, false, false, false, false],
+            "è": [true, false, false, true, false, false],
+            "é": [false, true, false, true, false, false],
+            "ì": [false, true, true, false, false, false],
+            "í": [false, true, false, false, true, false],
+            "ò": [true, false, false, true, true, false],
+            "ó": [true, true, false, false, false, true],
+            "ù": [true, false, false, false, true, true],
+            "ú": [true, false, true, false, false, true],
+            "ä": [true, true, false, false, false, true],
+            "ë": [false, true, true, true, false, false],
+            "ï": [false, true, true, true, false, false],
+            "ö": [true, true, false, false, true, true],
+            "ü": [true, true, true, true, false, false],
+            "ñ": [true, false, true, true, true, false],
+            "ç": [true, false, true, false, false, false], 
 
-        // Uppercase accented letters
-        "À": [true, false, false, false, false, false, true, true],
-        "È": [true, false, false, true, false, false, true, true],
-        "É": [true, false, false, true, false, false, true, false],
-        "Ì": [false, true, true, false, false, false, true, true],
-        "Í": [false, true, true, false, false, false, true, false],
-        "Ò": [true, false, false, true, true, false, true, true],
-        "Ó": [true, false, false, true, true, false, true, false],
-        "Ù": [true, false, false, false, true, true, true, true],
-        "Ú": [true, false, false, false, true, true, true, false],
-        "Ä": [true, false, false, false, false, false, false, true],
-        "Ë": [true, false, false, true, false, false, false, true],
-        "Ï": [false, true, true, false, false, false, false, true],
-        "Ö": [true, false, false, true, true, false, false, true],
-        "Ü": [true, false, false, false, true, true, false, true],
-        "Ñ": [true, false, true, true, true, false, true, false],
-        "Ç": [true, false, true, false, false, false, true, false],
-
-        "ã": [true, false, false, false, false, false, false, true], // a con tilde
-        "õ": [true, false, false, true, true, false, false, true], // o con tilde
-        "â": [true, false, false, false, false, true, true, false], // a con accento circonflesso
-        "ê": [true, false, false, true, false, true, true, false], // e con accento circonflesso
-        "ô": [true, false, false, true, true, true, true, false], // o con accento circonflesso
-        
-        // Versioni maiuscole
-        "Ã": [true, false, false, false, false, false, false, true],
-        "Õ": [true, false, false, true, true, false, false, true],
-        "Â": [true, false, false, false, false, true, true, false],
-        "Ê": [true, false, false, true, false, true, true, false],
-        "Ô": [true, false, false, true, true, true, true, false],
+            // Maiuscole (sempre con prefisso ⠠)
+            "À": [true, false, false, false, false, false],
+            "È": [true, false, false, true, false, false],
+            "É": [false, true, false, true, false, false],
+            "Ì": [false, true, true, false, false, false],
+            "Í": [false, true, false, false, true, false],
+            "Ò": [true, false, false, true, true, false],
+            "Ó": [true, true, false, false, false, true],
+            "Ù": [true, false, false, false, true, true],
+            "Ú": [true, false, true, false, false, true],
+            "Ä": [true, true, false, false, false, true],
+            "Ë": [false, true, true, true, false, false],
+            "Ï": [false, true, true, true, false, false],
+            "Ö": [true, true, false, false, true, true],
+            "Ü": [true, true, true, true, false, false],
+            "Ñ": [true, false, true, true, true, false],
+            "Ç": [true, false, true, false, false, false],
+            
+            "ã": [true, true, true, false, true, false],    // braille portoghese
+            "õ": [true, true, true, true, true, false],     // braille portoghese
+            "â": [true, true, true, false, false, false],   // circonflesso
+            "ê": [true, true, true, true, false, false],    // circonflesso
+            "ô": [true, true, true, false, true, false],    // circonflesso
+            
+            // Versioni maiuscole (uguali, prefisso ⠠)
+            "Ã": [true, true, true, false, true, false],
+            "Õ": [true, true, true, true, true, false],
+            "Â": [true, true, true, false, false, false],
+            "Ê": [true, true, true, true, false, false],
+            "Ô": [true, true, true, false, true, false],
 
     ]
     
@@ -182,8 +183,8 @@ struct BrailleAlphabetView: View {
         case .uppercase:
             return brailleDictionary.keys
                 .filter { $0.isUppercase && !$0.isNumber && !(",.?!;:()\"'".contains($0)) }
-                .sorted()
-                .map { (String($0), brailleDictionary[$0]!) }
+                                .sorted()
+                                .map { (String($0), brailleDictionary[$0]!) }
         case .numbers:
             return brailleDictionary.keys
                 .filter { $0.isNumber }

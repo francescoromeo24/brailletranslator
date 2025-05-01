@@ -41,15 +41,20 @@ struct BraillePatternView: View {
     }
 
     var body: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.fixed(15)), count: 2), spacing: 5) {
-            ForEach(0..<min(6, pattern.count), id: \.self) { index in
-                Circle()
-                    .frame(width: min(15, UIFontMetrics.default.scaledValue(for: 15)),
-                           height: min(15, UIFontMetrics.default.scaledValue(for: 15)))
-                    .foregroundColor(pattern.indices.contains(index) ? (pattern[index] ? .primary : Color.secondary.opacity(0.3)) : .clear)
+        VStack(spacing: 5) {
+            LazyVGrid(columns: Array(repeating: GridItem(.fixed(15)), count: 2), spacing: 5) {
+                ForEach(0..<9, id: \.self) { index in
+                    Circle()
+                        .frame(width: 15, height: 15)
+                        .foregroundColor(
+                            pattern.indices.contains(index) ? 
+                            (pattern[index] ? .primary : Color.secondary.opacity(0.3)) : 
+                            .clear
+                        )
+                }
             }
+            .frame(width: 75, height: 90)
         }
-        .frame(width: 50, height: 60)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(label)
         .onTapGesture {
