@@ -20,6 +20,7 @@ struct BrailleAlphabetView: View {
     }
     
     @State private var selectedType: AlphabetType = .lowercase
+    @State private var showAlert = false
 
     let brailleDictionary: [Character: [Bool]] = [
         // Lowercase letters
@@ -188,6 +189,9 @@ struct BrailleAlphabetView: View {
                     Picker("Select Alphabet Type", selection: $selectedType) {
                         ForEach(AlphabetType.allCases, id: \.self) { type in
                             Text(type.localized)
+                                .accessibilityLabel(LocalizedStringKey(type.rawValue))
+                                .accessibilityHint(LocalizedStringKey("double_tap_to_switch_to_braille_alphabet"))
+                                .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                 .font(.body)
                                 .lineLimit(2)
                                 .minimumScaleFactor(0.6)
@@ -196,27 +200,83 @@ struct BrailleAlphabetView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
-
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel(LocalizedStringKey("braille_alphabet_tab"))
+                    .accessibilityHint(LocalizedStringKey("double_tap_to_switch_to_braille_alphabet"))
+                    
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 20), count: 4), spacing: 30) {
                         ForEach(filteredAlphabet(), id: \.label) { item in
                             VStack(spacing: 10) {
                                 Text(item.label)
+                                    .accessibilityLabel(LocalizedStringKey("braille_pattern_for \(item.label)"))
+                                    .accessibilityHint(LocalizedStringKey("double_tap_to_hear_character"))
+                                    .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
                                     .font(.title)
                                     .bold()
                                     .foregroundColor(.gray)
                                     .accessibilityLabel(item.label)
                                 
                                 BraillePatternView(pattern: item.pattern, label: item.label)
+                                    .accessibilityLabel(LocalizedStringKey("braille_pattern_for \(item.label)"))
+                                    .accessibilityHint(LocalizedStringKey("double_tap_to_hear_character"))
                             }
+                            .accessibilityElement(children: .combine)
                         }
                     }
                     .padding()
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel(LocalizedStringKey("braille_alphabet"))
+                }
+                .toolbar {
+                    ToolbarItemGroup(placement: .topBarTrailing) {
+                        if selectedType == .uppercase || selectedType == .numbers {
+                            Button(action: {
+                                showAlert.toggle()
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .font(.system(size: 18))
+                                    .foregroundColor(.blue)
+                            }
+                            .padding(.trailing, 16)
+                            .accessibilityLabel(LocalizedStringKey("uppercase_info_accessibility"))
+                        }
+                    }
                 }
             }
             .background(Color("Background"))
             .navigationTitle(LocalizedStringKey("braille_alphabet"))
-            .dynamicTypeSize(..<DynamicTypeSize.large)
+            .accessibilityLabel(LocalizedStringKey("braille_alphabet"))
+            .accessibilityHint(LocalizedStringKey("braille_alphabet_tab"))
+            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .foregroundColor(.blue)
+            .overlay {
+                if showAlert {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            showAlert = false
+                        }
+                    
+                    VStack(spacing: 20) {
+                        Text("Usa questo prefisso prima del carattere")
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                            .foregroundColor(.primary)
+                        
+                        if selectedType == .uppercase {
+                            BraillePatternView(pattern: [false, false, false, false, false, true], label: "Uppercase prefix")
+                        } else if selectedType == .numbers {
+                            BraillePatternView(pattern: [false, false, true, true, true, true], label: "Numbers prefix")
+                        }
+                    }
+                    .padding()
+                    .background(Color("Background"))
+                    .cornerRadius(15)
+                    .shadow(radius: 10)
+                    .padding()
+                }
+            }
         }
     }
 }
