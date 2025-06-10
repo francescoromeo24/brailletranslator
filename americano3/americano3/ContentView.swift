@@ -24,6 +24,7 @@ struct ContentView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.systemBlue]
     }
     
+    
     private func speakTranslation() {
         let textToSpeak = viewModel.isTextToBraille ? viewModel.brailleOutput : viewModel.textInput
         guard !textToSpeak.isEmpty else { return }
@@ -49,6 +50,8 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 5) {
                         HStack {
                             Text(viewModel.isTextToBraille ? LocalizedStringKey("text_label") : LocalizedStringKey("braille_label"))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 10)
                                 .accessibilityLabel(viewModel.isTextToBraille ? LocalizedStringKey("text_label") : LocalizedStringKey("braille_label"))
                                 .accessibilityHint(LocalizedStringKey("enter_text_hint"))
                                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
@@ -117,6 +120,8 @@ struct ContentView: View {
                     // Braille Output Section
                     VStack(alignment: .leading, spacing: 5) {
                         Text(viewModel.isTextToBraille ? LocalizedStringKey("braille_label") : LocalizedStringKey("text_label"))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 5)
                             .accessibilityLabel(viewModel.isTextToBraille ? LocalizedStringKey("braille_label") : LocalizedStringKey("text_label"))
                             .accessibilityHint(LocalizedStringKey("swipe_to_hear"))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
@@ -206,6 +211,7 @@ struct ContentView: View {
                     // History Section
                     HStack {
                         Text(LocalizedStringKey("history"))
+                            .foregroundColor(.blue)
                             .accessibilityLabel(LocalizedStringKey("history"))
                             .accessibilityHint(LocalizedStringKey("history_section_hint"))
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
@@ -270,6 +276,7 @@ struct ContentView: View {
                 FavoritesView(flashcards: $viewModel.flashcardManager.flashcards)
             }
             .navigationTitle(LocalizedStringKey("translate"))
+            .foregroundColor(.blue)
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

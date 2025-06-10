@@ -21,9 +21,9 @@ struct BrailleAlphabetView: View {
         }
     }
     
+    @Binding var showGlobalAlert: Bool
+    @Binding var alertType: AlphabetType?
     @State private var selectedType: AlphabetType = .lowercase
-    //@State private var showUppercaseInfo = false // Add this line
-    @State private var showAlert = false
     
     // Braille dictionary mapping characters to their respective Braille patterns
     let brailleDictionary: [Character: [Bool]] = [
@@ -245,7 +245,8 @@ struct BrailleAlphabetView: View {
                     ToolbarItemGroup(placement: .topBarTrailing) {
                         if selectedType == .uppercase || selectedType == .numbers {
                             Button(action: {
-                                showAlert.toggle()
+                                alertType = selectedType
+                                showGlobalAlert = true
                             }) {
                                 Image(systemName: "info.circle")
                                     .font(.system(size: 18))
@@ -255,48 +256,6 @@ struct BrailleAlphabetView: View {
                             .accessibilityLabel(LocalizedStringKey("uppercase_info_accessibility"))
                         }
                     }
-                }
-            }
-            .overlay {
-                if showAlert {
-                    Color.black.opacity(0.4)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            showAlert = false
-                        }
-                    
-                    VStack(spacing: 0) {
-                        Text("Usa questo prefisso prima del carattere")
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.primary)
-                            .padding(.top, 20)
-                            .padding(.horizontal, 12)
-                        
-                        if selectedType == .uppercase {
-                            BraillePatternView(pattern: [false, false, false, false, false, true], label: "Uppercase prefix")
-                                .frame(width: 75, height: 90)
-                                .frame(maxWidth: .infinity)
-                                .padding(.top, 25)
-                        } else if selectedType == .numbers {
-                            BraillePatternView(pattern: [false, false, true, true, true, true], label: "Number prefix")
-                                .frame(width: 75, height: 90)
-                                .frame(maxWidth: .infinity)
-                                .padding(.top, 25)
-                        }
-                        Divider()
-                            .padding(.horizontal, -16)
-                        Button("Conferma") {
-                            showAlert = false
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
-                        .foregroundColor(.blue)
-                    }
-                    .frame(width: 270)
-                    .background(Color(UIColor.systemBackground))
-                    .cornerRadius(13)
-                    .shadow(radius: 10)
                 }
             }
             .background(Color("Background"))
@@ -310,7 +269,7 @@ struct BrailleAlphabetView: View {
 }
 
         #Preview {
-            BrailleAlphabetView()
+            BrailleAlphabetView(showGlobalAlert: .constant(false), alertType: .constant(nil))
         
         }
   
