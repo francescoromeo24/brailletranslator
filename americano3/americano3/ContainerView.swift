@@ -42,7 +42,7 @@ struct ContainerView: View {
                     .ignoresSafeArea(.all)
                     .onTapGesture { showGlobalAlert = false }
                 VStack(spacing: 0) {
-                    Text("Usa questo prefisso prima del carattere")
+                    Text(LocalizedStringKey("braille_prefix_alert_message"))
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.primary)
@@ -63,7 +63,7 @@ struct ContainerView: View {
                         .padding(.horizontal, -16)
                         .padding(.top, 16)
                     Button(action: { showGlobalAlert = false }) {
-                        Text("Conferma")
+                        Text(LocalizedStringKey("confirm"))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
                             .foregroundColor(.blue)

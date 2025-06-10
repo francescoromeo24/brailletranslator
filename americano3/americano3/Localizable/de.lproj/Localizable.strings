@@ -140,3 +140,6 @@
 "enter_braille_placeholder" = "⠞⠑⠭⠞ ⠑⠊⠝⠛⠑⠃⠑⠝";
 "output_text_placeholder" = "Übersetzung";
 "output_braille_placeholder" = "⠥⠦⠃⠑⠗⠎⠑⠞⠵⠥⠝⠛";
+
+"braille_prefix_alert_message" = "Verwenden Sie dieses Präfix vor dem Zeichen";
+"confirm" = "Bestätigen";
